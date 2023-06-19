@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
-    [SerializeField] PlayerMove target;
+    PlayerMove target;
     public float health;
     public float maxHealth;
     bool isLive;

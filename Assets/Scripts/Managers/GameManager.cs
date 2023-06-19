@@ -11,16 +11,6 @@ public class GameManager : MonoBehaviour
     public static PoolManager Pool { get { return poolManager; } }
 
     public PlayerMove player;
-    public PlayerMove Player
-    {
-        get
-        {
-            if (player == null) 
-                player = FindObjectOfType<PlayerMove>();
-
-            return player;
-        }
-    }
     private void Awake()
     {
         if(instance != null)
@@ -30,6 +20,7 @@ public class GameManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this);
+        player = FindObjectOfType<PlayerMove>();
         InitManager();
     }
 
