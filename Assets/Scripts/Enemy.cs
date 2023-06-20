@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour
 
         if(health>0)
         {
+            ani.SetTrigger("Hit");
         }
         else if(health <= 0)
         {
