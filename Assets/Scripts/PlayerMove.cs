@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
 
+    public Scanner scanner;
     private GameObject weapon;
     private Animator ani;
     private SpriteRenderer sprite;
@@ -18,6 +19,7 @@ public class PlayerMove : MonoBehaviour
         ani = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        scanner=GetComponent<Scanner>();
     }
     private void FixedUpdate()
     {

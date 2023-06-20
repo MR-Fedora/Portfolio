@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8639263116268853967}
   - component: {fileID: 1877731330}
   - component: {fileID: 1877731336}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Orc
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -160,7 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  target: {fileID: 0}
+  health: 0
+  maxHealth: 0
 --- !u!114 &1877731336
 MonoBehaviour:
   m_ObjectHideFlags: 0

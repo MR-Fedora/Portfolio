@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponData : MonoBehaviour
+[System.Serializable]
+public class WeaponData
 {
-    public GameObject weaponData;
-
+    public GameObject weapon;
     public int damage;
+    public float per;
+    public int count;
+    public float speed;
+    public bool weaponAble;
 }
