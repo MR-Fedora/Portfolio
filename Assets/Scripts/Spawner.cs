@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     int level;
     float timer;
     float gameTime = 0;
-    float maxTime = 3 * 10f;
+    float maxTime = 29f;
     private void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();

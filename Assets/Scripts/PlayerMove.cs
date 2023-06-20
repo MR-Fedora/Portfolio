@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
 
+    private GameObject weapon;
     private Animator ani;
     private SpriteRenderer sprite;
     private Rigidbody2D rb;

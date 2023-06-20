@@ -9,20 +9,26 @@ public class Enemy : MonoBehaviour
     public float health;
     public float maxHealth;
     bool isLive;
-
     Rigidbody2D rb;
     SpriteRenderer sprite;
+    Animator ani;
+    Collider2D coll;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        ani = GetComponent<Animator>();
+        coll = GetComponent<Collider2D>();
     }
 
     private void FixedUpdate()
     {
         if (!isLive)
+        {
             return;
+        }
+            
         Vector2 dir = target.transform.position-transform.position;
         Vector2 nextVec =dir.normalized*moveSpeed*Time.fixedDeltaTime;
         rb.MovePosition(rb.position + nextVec);
@@ -59,9 +65,8 @@ public class Enemy : MonoBehaviour
 
         if(health>0)
         {
-
         }
-        else
+        else if(health <= 0)
         {
             Dead();
         }
@@ -69,6 +74,16 @@ public class Enemy : MonoBehaviour
 
     private void Dead()
     {
-        gameObject.SetActive(false);
+        StartCoroutine(Dying());
+    }
+    private IEnumerator Dying()
+    {
+        ani.SetTrigger("Dying");
+        moveSpeed = 0;
+        coll.enabled=false;
+        yield return new WaitForSeconds(0.3f);
+        coll.enabled = true;
+        GameManager.poolManager.Release<GameObject>(gameObject);
+
     }
 }
