@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
 
+    public int level;
     public Scanner scanner;
     private GameObject weapon;
     private Animator ani;
@@ -23,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        level=GameManager.instance.level;
         Move();
     }
 
