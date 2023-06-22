@@ -13,6 +13,7 @@ public class GameSetting : MonoBehaviour
             GameObject gameManager = new GameObject() { name = "GameManager" };
             gameManager.AddComponent<GameManager>();
         }
+
     }
 
 }

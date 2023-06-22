@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    public void Init(float damage, float per,Vector3 dir)
+    public void Init(float damage, float per, Vector3 dir)
     {
         this.damage = damage;
         this.per = per;
@@ -21,23 +21,23 @@ public class Weapon : MonoBehaviour
 
         if (per > -1)
         {
-            rb.velocity = dir*10;
+            rb.velocity = dir * 10;
         }
     }
 
-    public void Init(float damage,float per)
+    public void Init(float damage, float per)
     {
-        Init(damage, per,Vector3.zero);
+        Init(damage, per, Vector3.zero);
     }
-   
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Enemy")|| per==-1)
+        if (!collision.CompareTag("Enemy") || per == -1)
             return;
 
         per--;
 
-        if(per == -1)
+        if (per == -1)
         {
             rb.velocity = Vector2.zero;
             if (!isDied)
@@ -49,7 +49,7 @@ public class Weapon : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(!collision.CompareTag("Area")||per==-1) return;
+        if (!collision.CompareTag("Area") || per == -1) return;
 
 
         rb.velocity = Vector2.zero;

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
+    [SerializeField] public float moveSpeed;
 
     public int level;
     public Scanner scanner;
@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     public Vector2 moveDir;
     private Spawner spawner;
+
     private void Awake()
     {
         ani = GetComponent<Animator>();
@@ -22,6 +23,7 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         scanner=GetComponent<Scanner>();
     }
+    
     private void FixedUpdate()
     {
         level=GameManager.instance.level;

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8487d020448cde443a45df93fe59172c, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemId: 1
+  itemName: FireBall
+  itemDes: 
+  itemIcon: {fileID: 259662801, guid: 9e8487ca47af2244483fb8c1cd206a52, type: 3}
+  baseDamage: 2.5
+  baseCount: 0
+  baseSpeed: 0.3
+  damages:
+  - 0.5
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+  count: 0100000001000000010000000200000002000000
+  speed:
+  - 0.3
+  - 0.7
+  - 1
+  - 1.5
+  - 2.5
+  project: {fileID: 4746725625950742835, guid: 7d68319ebc1d75d458114c51c016b025, type: 3}

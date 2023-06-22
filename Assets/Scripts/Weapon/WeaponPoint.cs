@@ -7,66 +7,97 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class WeaponPoint : MonoBehaviour
 {
-    public WeaponData[] weaponData;
- 
+    private ItemData data;
+    GameObject weaponData;
     private float damage;
     private int count;
-    private float speed;
+    public float speed;
+    public int id;
+    private bool active;
 
     float timer;
     PlayerMove player;
     private void Awake()
     {
-        player = GetComponentInParent<PlayerMove>();
-        Init();
+        player = GameManager.instance.player;
+        
     }
     private void Update()
     {
-
-        transform.Rotate(Vector3.back * weaponData[0].speed * Time.deltaTime);
-
-        timer += Time.deltaTime;
-        if (timer > weaponData[1].speed)
+        switch (id)
         {
-            timer = 0f;
-            Fire();
+            case 0:
+                transform.Rotate(Vector3.back * speed * Time.deltaTime);
+                break;
+            case 1:
+                timer += Time.deltaTime;
+                if (timer > speed)
+                {
+                    timer = 0f;
+                    Fire();
+                }
+                break;
         }
     }
-    public void LevelUp(float damage,int count)
+    public void LevelUp(float damage, int count)
     {
         this.damage = damage;
-        this.count = count;
+        this.count += count;
 
-        Batch();
+        if (id == 0)
+        {
+            Batch();
+
+        }
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
-    public void Init()
-    {  
-        Batch();
+    public void Init(ItemData data)
+    {
+        name = "WeaponPoint"+data.itemId;
+        transform.parent=player.transform;
+        transform.localPosition = Vector3.zero;
+        
+        weaponData = data.project;
+
+        id=data.itemId;
+        damage = data.baseDamage;
+        count = data.baseCount;
+
+        switch (id)
+        {
+            case 0:
+                speed = 150;
+                Batch();
+                break;
+            case 1:
+                speed = 0.3f;
+                break;
+
+        }
+        player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);
     }
     private void Batch()
     {
-        
-        for (int i = 0; i < weaponData[0].count; i++)
+        for (int i = 0; i < count; i++)
         {
-            GameObject sword = GameManager.poolManager.Get<GameObject>(weaponData[0].weapon);
             Transform weapon;
-            if(i<transform.childCount)
+            if (i < transform.childCount)
             {
                 weapon = transform.GetChild(i);
             }
             else
             {
-                weapon = sword.transform;
+                weapon = GameManager.poolManager.Get(weaponData).transform;
                 weapon.parent = transform;
             }
 
             weapon.localPosition = Vector3.zero;
             weapon.localRotation = Quaternion.identity;
-           
-            Vector3 rotate = (Vector3.forward * 360 * i / weaponData[0].count);
+
+            Vector3 rotate = (Vector3.forward * 360 * i / count);
             weapon.Rotate(rotate);
             weapon.Translate(weapon.up * 1.5f, Space.World);
-            weapon.GetComponent<Weapon>().Init(weaponData[0].damage, weaponData[0].per);
+            weapon.GetComponent<Weapon>().Init(damage, -1);
         }
     }
 
@@ -78,12 +109,11 @@ public class WeaponPoint : MonoBehaviour
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;
 
-        GameObject fireball = GameManager.poolManager.Get<GameObject>(weaponData[1].weapon);
+        GameObject fireball = GameManager.poolManager.Get(weaponData);
         Transform weapon = fireball.transform;
         weapon.position = transform.position;
         weapon.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-        weapon.GetComponent<Weapon>().Init(weaponData[1].damage, weaponData[1].per, dir);
+        weapon.GetComponent<Weapon>().Init(damage, 1, dir);
     }
-
 }
 
