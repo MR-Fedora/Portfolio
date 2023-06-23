@@ -14,6 +14,8 @@ public class Item : MonoBehaviour
 
     Image icon;
     TMP_Text textLevel;
+    TMP_Text textName;
+    TMP_Text textDesc;
 
     private void Awake()
     {
@@ -22,15 +24,33 @@ public class Item : MonoBehaviour
 
         TMP_Text[] texts = GetComponentsInChildren<TMP_Text>();
         textLevel = texts[0];
+        textName = texts[1];
+        textDesc = texts[2];
+        textName.text = data.itemName;
     }
 
-    private void LateUpdate()
+    private void OnEnable()
     {
-        textLevel.text = "Lv." + (level+1);
+        textLevel.text = "Lv." + (level + 1);
         if (level == data.damages.Length)
         {
             textLevel.text = "Lv. MAX";
         }
+        switch (data.itemType)
+        {
+            case ItemData.ItemType.Melee:
+            case ItemData.ItemType.Range:
+                textDesc.text = string.Format(data.itemDes, data.damages[level]*100, data.count[level]);
+                break;
+            case ItemData.ItemType.Speed:
+            case ItemData.ItemType.UPGrade:
+                textDesc.text = string.Format(data.itemDes, data.damages[level]*100);
+                break;
+            default:
+                textDesc.text = string.Format(data.itemDes);
+                break;
+        }
+               
     }
     public void OnClick()
     {

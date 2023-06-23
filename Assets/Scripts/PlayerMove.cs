@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] public float moveSpeed;
+    [SerializeField] public GameObject overUI;
 
     public int level;
     public Scanner scanner;
@@ -26,7 +28,9 @@ public class PlayerMove : MonoBehaviour
     
     private void FixedUpdate()
     {
-        level=GameManager.instance.level;
+        if (!GameManager.instance.isLive)
+            return;
+        level =GameManager.instance.level;
         Move();
     }
 
@@ -47,5 +51,22 @@ public class PlayerMove : MonoBehaviour
     private void OnMove(InputValue value)
     {
         moveDir = value.Get<Vector2>();
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(!GameManager.instance.isLive)
+            return;
+        GameManager.playerData.health -= Time.deltaTime*30f;
+
+        if(GameManager.playerData.health<=0)
+        {
+            for(int i=2;i<transform.childCount;i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+
+            }
+            ani.SetTrigger("Die");
+            GameManager.instance.GameOver(overUI);
+        }
     }
 }

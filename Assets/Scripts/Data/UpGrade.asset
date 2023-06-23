@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 2
   itemId: 0
   itemName: PowerUp
-  itemDes: 
+  itemDes: "\uC5F0\uC0AC\uC18D\uB3C4 {0}%\uC99D\uAC00"
   itemIcon: {fileID: 1593172081, guid: 750df83503d3a634e87794c22dd719e5, type: 3}
   baseDamage: 0
   baseCount: 0

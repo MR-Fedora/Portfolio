@@ -24,6 +24,8 @@ public class WeaponPoint : MonoBehaviour
     }
     private void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
         switch (id)
         {
             case 0:

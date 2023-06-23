@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
         if (!isLive)
         {
             return;
@@ -37,6 +39,8 @@ public class Enemy : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
         if (!isLive)
             return;
         sprite.flipX = target.transform.position.x < transform.position.x;
