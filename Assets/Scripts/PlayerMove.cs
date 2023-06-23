@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] public float moveSpeed;
-    [SerializeField] public GameObject overUI;
+    [SerializeField] public Result overUI;
+    [SerializeField] public GameObject enemyClear;
 
     public int level;
     public Scanner scanner;
@@ -66,7 +67,7 @@ public class PlayerMove : MonoBehaviour
 
             }
             ani.SetTrigger("Die");
-            GameManager.instance.GameOver(overUI);
+            GameManager.instance.GameOver();
         }
     }
 }

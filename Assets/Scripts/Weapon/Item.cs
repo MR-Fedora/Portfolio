@@ -21,7 +21,7 @@ public class Item : MonoBehaviour
     {
         icon = GetComponentsInChildren<Image>()[1];
         icon.sprite = data.itemIcon;
-
+        level = 0;
         TMP_Text[] texts = GetComponentsInChildren<TMP_Text>();
         textLevel = texts[0];
         textName = texts[1];
