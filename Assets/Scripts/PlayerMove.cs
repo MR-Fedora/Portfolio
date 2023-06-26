@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     public Vector2 moveDir;
     private Spawner spawner;
+    public RuntimeAnimatorController[] controller;
 
     private void Awake()
     {
@@ -26,7 +27,11 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         scanner=GetComponent<Scanner>();
     }
-    
+
+    private void OnEnable()
+    {
+        ani.runtimeAnimatorController = controller[GameManager.instance.playerId];
+    }
     private void FixedUpdate()
     {
         if (!GameManager.instance.isLive)

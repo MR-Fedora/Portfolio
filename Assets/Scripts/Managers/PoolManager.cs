@@ -5,17 +5,16 @@ using UnityEngine.Pool;
 
 public class PoolManager : MonoBehaviour
 {
-    Dictionary<string, ObjectPool<GameObject>> poolDic;
-    Dictionary<string, Transform> poolContainer;
-    Transform poolRoot;
+    public Dictionary<string, ObjectPool<GameObject>> poolDic;
+    public Dictionary<string, Transform> poolContainer;
+    public Transform poolRoot;
 
     private void Awake()
     {
         poolDic = new Dictionary<string, ObjectPool<GameObject>>();
         poolContainer = new Dictionary<string, Transform>();
-        poolRoot = new GameObject("PoolRoot").transform;
+        
     }
-
     public T Get<T>(T original, Vector3 position, Quaternion rotation, Transform parent) where T : Object
     {
         if (original is GameObject)

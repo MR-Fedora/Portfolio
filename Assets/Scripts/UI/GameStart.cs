@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameStart : MonoBehaviour
 {
-    public void GameMainStart()
+    public void GameMainStart(int id)
     {
-        GameManager.instance.GameStart();
+        GameManager.instance.GameStart(id);
     }
     public void GameReTry()
     {

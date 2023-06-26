@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool isLive;
     public float gameTime = 0;
     public float maxTime = 10f;
+    public int playerId;
     public int level;
     public int exp;
     public int kill;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public static ResourceManager Resource { get { return resourceManager; } }
     public static PlayerData PlayerData { get { return playerData; } }
 
+    public PlayerBox box;
     public PlayerMove player;
     public LevelUp uiLevelUp;
     private void Awake()
@@ -36,17 +38,26 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         InitManager();
     }
-    public void GameStart()
+    public void GameStart(int id)
     {
+        playerId = id;
         gameTime = 0;
-        player = FindObjectOfType<PlayerMove>();
+        box = FindObjectOfType<PlayerBox>();
+        player = box.playerBox;
         uiLevelUp = FindObjectOfType<LevelUp>();
-        uiLevelUp.Select(0);
+        poolManager.poolRoot = new GameObject("PoolRoot").transform;
+        player.gameObject.SetActive(true);
+        uiLevelUp.Select(playerId%2);
         isLive = true;
         Resume();
     }
     public void GameReTry()
     {
+        poolManager.poolDic.Clear();
+        poolManager.poolContainer.Clear();
+        exp = 0;
+        level = 0;
+        kill = 0;
         SceneManager.LoadScene(0);
     }
 
