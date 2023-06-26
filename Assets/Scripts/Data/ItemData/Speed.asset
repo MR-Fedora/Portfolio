@@ -20,10 +20,10 @@ MonoBehaviour:
   baseDamage: 0
   baseCount: 0
   damages:
-  - 0.1
   - 0.3
   - 0.5
   - 0.7
   - 1
+  - 1.3
   count: 
   project: {fileID: 0}

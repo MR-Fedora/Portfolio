@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3d8064cdfdc064497c343b9673c991, type: 3}
   m_Name: Wizard
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  speed: 0
-  playerID: 0
-  weaponID: 0
+  maxHealth: 80
+  speed: 6
+  playerID: 1
+  weaponID: 1

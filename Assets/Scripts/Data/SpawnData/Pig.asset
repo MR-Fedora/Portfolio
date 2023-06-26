@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3d8064cdfdc064497c343b9673c991, type: 3}
-  m_Name: Soldier
+  m_Script: {fileID: 11500000, guid: 8fb2ac1e6bdca514db0bd814a78b7585, type: 3}
+  m_Name: Pig
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  speed: 5
-  playerID: 0
-  weaponID: 0
+  monster: {fileID: 0}
+  spawnType: 0
+  spawnTime: 0
+  health: 0
+  speed: 0

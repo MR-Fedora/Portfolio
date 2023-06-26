@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item", menuName = "Script Object/PlayerData")]
+[CreateAssetMenu(fileName = "Player", menuName = "Script Object/PlayerData")]
 public class PlayerData : ScriptableObject
 {
     public float maxHealth;

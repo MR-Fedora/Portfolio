@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SpawnData
+[CreateAssetMenu(fileName = "Spawn", menuName = "Script Object/SpawnData")]
+public class SpawnData : ScriptableObject
 {
     public GameObject monster;
     public int spawnType;
