@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PlayerBox : MonoBehaviour
 {
-    public PlayerMove playerBox;
+    public PlayerMove[] playerBox;
 }

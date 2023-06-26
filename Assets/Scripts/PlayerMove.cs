@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] public float moveSpeed;
     [SerializeField] public Result overUI;
     [SerializeField] public GameObject enemyClear;
+    public PlayerData playerData;
 
     public int level;
     public Scanner scanner;
@@ -18,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     public Vector2 moveDir;
     private Spawner spawner;
-    public RuntimeAnimatorController[] controller;
+    public float health;
 
     private void Awake()
     {
@@ -26,11 +27,7 @@ public class PlayerMove : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         scanner=GetComponent<Scanner>();
-    }
-
-    private void OnEnable()
-    {
-        ani.runtimeAnimatorController = controller[GameManager.instance.playerId];
+        health = playerData.maxHealth;
     }
     private void FixedUpdate()
     {
@@ -62,9 +59,9 @@ public class PlayerMove : MonoBehaviour
     {
         if(!GameManager.instance.isLive)
             return;
-        GameManager.playerData.health -= Time.deltaTime*30f;
+        health -= Time.deltaTime*30f;
 
-        if(GameManager.playerData.health<=0)
+        if(health<=0)
         {
             for(int i=2;i<transform.childCount;i++)
             {

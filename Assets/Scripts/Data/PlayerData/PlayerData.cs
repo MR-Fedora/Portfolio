@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+[CreateAssetMenu(fileName = "Item", menuName = "Script Object/PlayerData")]
+public class PlayerData : ScriptableObject
 {
-    public float health;
-    public float maxHealth=100;
-
-    private void Start()
-    {
-        health = maxHealth;
-    }
+    public float maxHealth;
+    public float speed;
+    public int playerID;
+    public int weaponID;
 }

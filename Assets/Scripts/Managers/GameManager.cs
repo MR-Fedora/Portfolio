@@ -9,21 +9,19 @@ public class GameManager : MonoBehaviour
     public bool isLive;
     public float gameTime = 0;
     public float maxTime = 10f;
-    public int playerId;
     public int level;
     public int exp;
     public int kill;
     public int[] nextExp = { 3, 5, 10, 10, 10, 10, 10, 10, 10, 10 };
 
-    public static PlayerData playerData;
     public static PoolManager poolManager;
     public static ResourceManager resourceManager;
 
     public static GameManager Instance { get { return instance; } }
     public static PoolManager Pool { get { return poolManager; } }
     public static ResourceManager Resource { get { return resourceManager; } }
-    public static PlayerData PlayerData { get { return playerData; } }
 
+    public CMtarget cm;
     public PlayerBox box;
     public PlayerMove player;
     public LevelUp uiLevelUp;
@@ -40,14 +38,16 @@ public class GameManager : MonoBehaviour
     }
     public void GameStart(int id)
     {
-        playerId = id;
         gameTime = 0;
         box = FindObjectOfType<PlayerBox>();
-        player = box.playerBox;
+        player = box.playerBox[id];
         uiLevelUp = FindObjectOfType<LevelUp>();
         poolManager.poolRoot = new GameObject("PoolRoot").transform;
         player.gameObject.SetActive(true);
-        uiLevelUp.Select(playerId%2);
+        cm = FindObjectOfType<CMtarget>();
+        cm.cine.Follow = player.transform;
+        cm.cine.LookAt = player.transform;
+        uiLevelUp.Select(player.playerData.weaponID);
         isLive = true;
         Resume();
     }
@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         poolManager.poolDic.Clear();
         poolManager.poolContainer.Clear();
+        player.health = player.playerData.maxHealth;
         exp = 0;
         level = 0;
         kill = 0;
@@ -119,11 +120,6 @@ public class GameManager : MonoBehaviour
         resourceObj.name = "ResourceManager";
         resourceObj.transform.parent = transform;
         resourceManager = resourceObj.AddComponent<ResourceManager>();
-
-        GameObject playerObj = new GameObject();
-        playerObj.name = "PlayerData";
-        playerObj.transform.parent = transform;
-        playerData = playerObj.AddComponent<PlayerData>();
     }
     public void GetExp()
     {
