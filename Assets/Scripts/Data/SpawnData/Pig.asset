@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb2ac1e6bdca514db0bd814a78b7585, type: 3}
   m_Name: Pig
   m_EditorClassIdentifier: 
-  monster: {fileID: 0}
-  spawnType: 0
-  spawnTime: 0
-  health: 0
-  speed: 0
+  monster: {fileID: 8706963575919594244, guid: 4e2cca0341ba9634c912170d990b6929, type: 3}
+  spawnType: 1
+  spawnTime: 0.5
+  health: 15
+  speed: 3.5

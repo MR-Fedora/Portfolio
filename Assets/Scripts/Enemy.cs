@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
 
     public void Init(SpawnData data)
     {
-        moveSpeed = data.speed;
+        moveSpeed = data.speed; 
         maxHealth = data.health;
         health=data.health;
     }
@@ -70,6 +70,7 @@ public class Enemy : MonoBehaviour
         if(health>0)
         {
             ani.SetTrigger("Hit");
+            AudioManager.instance.PlaySFX(AudioManager.SFX.Hit);
         }
         else if(health <= 0)
         {

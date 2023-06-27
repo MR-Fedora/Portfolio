@@ -50,16 +50,19 @@ public class GameManager : MonoBehaviour
         uiLevelUp.Select(player.playerData.weaponID);
         isLive = true;
         Resume();
+
+        AudioManager.instance.PlayrBGM(true);
     }
     public void GameReTry()
     {
+        
+        SceneManager.LoadScene(0);
         poolManager.poolDic.Clear();
         poolManager.poolContainer.Clear();
         player.health = player.playerData.maxHealth;
         exp = 0;
         level = 0;
         kill = 0;
-        SceneManager.LoadScene(0);
     }
 
     public void GameOver()
@@ -74,6 +77,9 @@ public class GameManager : MonoBehaviour
         player.overUI.gameObject.SetActive(true);
         player.overUI.Lose();
         Stop();
+        AudioManager.instance.PlaySFX(AudioManager.SFX.Die);
+        AudioManager.instance.PlayrBGM(false);
+
     }
     public void GameVictory()
     {
@@ -88,6 +94,8 @@ public class GameManager : MonoBehaviour
         player.overUI.gameObject.SetActive(true);
         player.overUI.Win();
         Stop();
+        AudioManager.instance.PlayrBGM(false);
+        AudioManager.instance.PlaySFX(AudioManager.SFX.Victory);
     }
    
     private void Update()

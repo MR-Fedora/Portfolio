@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb2ac1e6bdca514db0bd814a78b7585, type: 3}
   m_Name: Orc
   m_EditorClassIdentifier: 
-  monster: {fileID: 0}
+  monster: {fileID: 8945958265921636003, guid: 69475ee3c11ac7242a02ceebba1b06e8, type: 3}
   spawnType: 0
-  spawnTime: 0
-  health: 0
-  speed: 0
+  spawnTime: 0.7
+  health: 10
+  speed: 3

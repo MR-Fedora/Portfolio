@@ -18,7 +18,6 @@ public class PlayerMove : MonoBehaviour
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
     public Vector2 moveDir;
-    private Spawner spawner;
     public float health;
 
     private void Awake()
@@ -70,6 +69,10 @@ public class PlayerMove : MonoBehaviour
             }
             ani.SetTrigger("Die");
             GameManager.instance.GameOver();
+            if (playerData.playerID == 0 || playerData.playerID == 2)
+                AudioManager.instance.PlaySFX(AudioManager.SFX.SoldierDie);
+            else
+                AudioManager.instance.PlaySFX(AudioManager.SFX.WizardDid);
         }
     }
 }

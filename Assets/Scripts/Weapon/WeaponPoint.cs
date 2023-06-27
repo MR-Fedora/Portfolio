@@ -116,6 +116,8 @@ public class WeaponPoint : MonoBehaviour
         weapon.position = transform.position;
         weapon.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         weapon.GetComponent<Weapon>().Init(damage, 1, dir);
+
+        AudioManager.instance.PlaySFX(AudioManager.SFX.Fire);
     }
 }
 

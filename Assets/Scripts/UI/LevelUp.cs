@@ -6,7 +6,6 @@ public class LevelUp : MonoBehaviour
 {
     RectTransform rect;
     Item[] items;
-    public GameObject player;
 
     private void Awake()
     {
