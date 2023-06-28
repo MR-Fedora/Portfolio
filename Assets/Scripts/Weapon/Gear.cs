@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gear : MonoBehaviour
 {
     public ItemData.ItemType type;
-    public float rate;
+    public float meleeRate;
+    public float rangeRate;
 
     public void Init(ItemData data)
     {
@@ -14,13 +16,15 @@ public class Gear : MonoBehaviour
         transform.localPosition = Vector3.zero;
 
         type = data.itemType;
-        rate = data.damages[0];
+        meleeRate = data.damages[0];
+        rangeRate = data.count[0];
         ApplyGear();
     }
 
-    public void LevelUp(float rate)
+    public void LevelUp(float meleeRate,float rangeRate)
     {
-        this.rate = rate;
+        this.meleeRate = meleeRate;
+        this.rangeRate = rangeRate;
         ApplyGear();
     }
 
@@ -45,11 +49,19 @@ public class Gear : MonoBehaviour
             switch(weapon.id)
             {
                 case 0:
-                    weapon.speed = 150 + (150 * rate);
+                    weapon.speed = 150 + (150 * meleeRate);
                     break;
-                default:
-                    weapon.speed = 0.5f * (1f - rate); 
-                    break; 
+                case 1:
+                    weapon.speed = 0.5f * (1f - rangeRate);
+                    break;
+                case 2:
+                    if(weapon.speed<0.5f)
+                    {
+                        weapon.GetComponent<Animator>();
+                        weapon.speed = 2f;
+                    }
+                    weapon.speed = 1f * (1f - rangeRate);
+                    break;
             }
         }
     }
@@ -57,6 +69,6 @@ public class Gear : MonoBehaviour
     void SpeedUp()
     {
         float speed = GameManager.instance.player.playerData.speed;
-        GameManager.instance.player.moveSpeed = speed + speed * rate;
+        GameManager.instance.player.moveSpeed = speed + speed * meleeRate;
     }
 }

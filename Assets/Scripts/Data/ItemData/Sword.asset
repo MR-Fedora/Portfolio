@@ -25,5 +25,10 @@ MonoBehaviour:
   - 1.5
   - 2
   - 2.5
-  count: 0100000001000000010000000100000002000000
+  count:
+  - 1
+  - 1
+  - 1
+  - 2
+  - 3
   project: {fileID: 8641632386382264005, guid: 2f6fb8e4c4623724d99eb737eb5ffcad, type: 3}

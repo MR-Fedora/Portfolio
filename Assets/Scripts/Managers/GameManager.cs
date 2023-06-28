@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool isLive;
     public float gameTime = 0;
-    public float maxTime = 10f;
+    public float maxTime = 40f;
     public int level;
     public int exp;
     public int kill;
@@ -16,10 +16,11 @@ public class GameManager : MonoBehaviour
 
     public static PoolManager poolManager;
     public static ResourceManager resourceManager;
-
+   
     public static GameManager Instance { get { return instance; } }
     public static PoolManager Pool { get { return poolManager; } }
     public static ResourceManager Resource { get { return resourceManager; } }
+
 
     public CMtarget cm;
     public PlayerBox box;

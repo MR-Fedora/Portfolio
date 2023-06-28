@@ -67,7 +67,7 @@ public class Item : MonoBehaviour
                 else
                 {
                     float nextDamage = data.baseDamage;
-                    int nextCount = 0;
+                    float nextCount = 0;
 
                     nextDamage += data.baseDamage * data.damages[level];
                     nextCount += data.count[level];
@@ -87,8 +87,9 @@ public class Item : MonoBehaviour
                 }
                 else
                 {
-                    float nextRate = data.damages[level];
-                    gear.LevelUp(nextRate);
+                    float meleeRate = data.damages[level];
+                    float rangeRate = data.count[level];
+                    gear.LevelUp(meleeRate,rangeRate);
                 }
                 level++;
                 break;

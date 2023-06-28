@@ -6,11 +6,11 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class WeaponPoint : MonoBehaviour
-{
-    private ItemData data;
+{ 
+    Animator ani;
     GameObject weaponData;
     private float damage;
-    private int count;
+    private float count;
     public float speed;
     public int id;
     private bool active;
@@ -20,8 +20,8 @@ public class WeaponPoint : MonoBehaviour
     private void Awake()
     {
         player = GameManager.instance.player;
-        
     }
+
     private void Update()
     {
         if (!GameManager.instance.isLive)
@@ -39,17 +39,32 @@ public class WeaponPoint : MonoBehaviour
                     Fire();
                 }
                 break;
+            case 2:
+                timer += Time.deltaTime;
+                if (timer > speed)
+                {
+                    
+                    timer = 0f;
+                    StartCoroutine(SwingRoutine());
+                }
+                break;
         }
     }
-    public void LevelUp(float damage, int count)
+    public void LevelUp(float damage, float count)
     {
         this.damage = damage;
         this.count += count;
 
-        if (id == 0)
+        switch (id)
         {
-            Batch();
-
+            case 0:
+                Batch();
+                break;
+            case 2:
+                Swing(); 
+                if(speed<0.5)
+                    ani.speed = 2f;
+                break;
         }
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
@@ -74,7 +89,11 @@ public class WeaponPoint : MonoBehaviour
             case 1:
                 speed = 0.3f;
                 break;
-
+            case 2:
+                speed = 1f;
+                Swing();
+                weaponData.SetActive(false);
+                break;
         }
         player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);
     }
@@ -105,19 +124,59 @@ public class WeaponPoint : MonoBehaviour
 
     private void Fire()
     {
-        if (!player.scanner.nearestTarget)
+        if (!player.scanner.FireTarget)
             return;
-        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 targetPos = player.scanner.FireTarget.position;
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;
 
         GameObject fireball = GameManager.poolManager.Get(weaponData);
         Transform weapon = fireball.transform;
+        weapon.parent=transform;
         weapon.position = transform.position;
         weapon.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         weapon.GetComponent<Weapon>().Init(damage, 1, dir);
 
         AudioManager.instance.PlaySFX(AudioManager.SFX.Fire);
+    }
+    public void Swing()
+    { 
+        Transform weapon;
+        if (transform.childCount>0)
+        {
+            weapon = transform.GetChild(0);
+        }
+        else
+        {
+            weapon = GameManager.poolManager.Get(weaponData).transform;
+            weapon.parent = transform;
+        }
+        if(weapon.gameObject.activeSelf==false)
+        {
+            weapon.position = transform.position;
+        }
+        weapon.transform.localScale = Vector3.one * count;
+        weapon.GetComponent<Weapon>().Init(damage, -1);
+        weaponData = weapon.gameObject;
+    }
+
+    IEnumerator SwingRoutine()
+    {
+        if(!player.scanner.swingTarget)
+        {
+            yield break;
+        }
+        Vector3 targetPos = player.scanner.swingTarget.position;
+        Vector3 dir = targetPos - transform.position;
+        dir = dir.normalized;
+        weaponData.SetActive(true);
+        weaponData.transform.position = transform.position;
+        weaponData.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+        weaponData.transform.Translate(weaponData.transform.right * count, Space.World);
+        AudioManager.instance.PlaySFX(AudioManager.SFX.Swing);
+        yield return new WaitForSeconds(0.5f);
+        weaponData.SetActive(false);
+        StopAllCoroutines();
     }
 }
 

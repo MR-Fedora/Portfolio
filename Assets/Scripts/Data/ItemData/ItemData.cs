@@ -19,7 +19,7 @@ public class ItemData : ScriptableObject
     public float baseDamage;
     public int baseCount;
     public float[] damages;
-    public int[] count;
+    public float[] count;
 
     [Header("Weapon")]
     public GameObject project;

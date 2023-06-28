@@ -77,6 +77,7 @@ public class Enemy : MonoBehaviour
             Dead();
             GameManager.instance.kill++;
             GameManager.instance.GetExp();
+            AudioManager.instance.PlaySFX(AudioManager.SFX.MonsterDie);
         }
     }
 
