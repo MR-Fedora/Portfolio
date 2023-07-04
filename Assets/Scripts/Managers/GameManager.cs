@@ -40,15 +40,19 @@ public class GameManager : MonoBehaviour
     public void GameStart(int id)
     {
         gameTime = 0;
+        
         box = FindObjectOfType<PlayerBox>();
         player = box.playerBox[id];
+        player.gameObject.SetActive(true);
         uiLevelUp = FindObjectOfType<LevelUp>();
         poolManager.poolRoot = new GameObject("PoolRoot").transform;
-        player.gameObject.SetActive(true);
+
+        
+
         cm = FindObjectOfType<CMtarget>();
         cm.cine.Follow = player.transform;
         cm.cine.LookAt = player.transform;
-        uiLevelUp.Select(player.playerData.weaponID);
+
         isLive = true;
         Resume();
 

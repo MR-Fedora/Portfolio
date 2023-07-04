@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8487d020448cde443a45df93fe59172c, type: 3}
-  m_Name: UpGrade
+  m_Name: PowerUp
   m_EditorClassIdentifier: 
-  itemType: 2
+  itemType: 3
   itemId: 0
   itemName: PowerUp
-  itemDes: "\uC5F0\uC0AC\uC18D\uB3C4 {0}%\uC99D\uAC00"
+  itemDes: "\uCE90\uB9AD\uD130 \uACF5\uACA9\uB825 {0}%\uC99D\uAC00"
   itemIcon: {fileID: 1593172081, guid: 750df83503d3a634e87794c22dd719e5, type: 3}
   baseDamage: 0
   baseCount: 0
+  baseSpeed: 0
   damages:
   - 0.3
   - 0.5
   - 0.7
   - 1
   - 1.3
-  count:
-  - 0.1
-  - 0.1
-  - 0.2
-  - 0.2
-  - 0.5
+  count: []
   project: {fileID: 0}

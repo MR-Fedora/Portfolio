@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8487d020448cde443a45df93fe59172c, type: 3}
-  m_Name: Sword
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  itemType: 0
-  itemId: 0
-  itemName: Sword
-  itemDes: "\uB370\uBBF8\uC9C0 {0}%\uC99D\uAC00\n\uD68C\uC804\uCCB4 {1}\uAC1C \uC99D\uAC00"
-  itemIcon: {fileID: -427083041, guid: 3cef3748b9e5a0b49a9e99cc5b80d4a9, type: 3}
-  baseDamage: 4.5
-  baseCount: 2
+  itemType: 2
+  itemId: 2
+  itemName: Axe
+  itemDes: "\uB370\uBBF8\uC9C0 {0}%\uC99D\uAC00\n\uD06C\uAE30 {0}%\uC99D\uAC00"
+  itemIcon: {fileID: 799724678, guid: 500d660527e032a48ac27555eae8c1ed, type: 3}
+  baseDamage: 3
+  baseCount: 1
+  baseSpeed: 1
   damages:
   - 0.5
   - 1
+  - 1.2
   - 1.5
   - 2
-  - 2.5
   count:
-  - 1
-  - 1
-  - 1
-  - 2
-  - 3
-  project: {fileID: 8641632386382264005, guid: 2f6fb8e4c4623724d99eb737eb5ffcad, type: 3}
+  - 0.3
+  - 0.3
+  - 0.3
+  - 0.3
+  - 0.3
+  project: {fileID: 4637651172947061678, guid: 801065cc5fa90754b903dae9f5ebf765, type: 3}

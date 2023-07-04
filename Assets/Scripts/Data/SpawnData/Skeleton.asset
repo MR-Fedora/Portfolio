@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster: {fileID: 8027707488902570547, guid: 470d84ba7d27526488d6d30c5d0ffe17, type: 3}
   spawnType: 2
-  spawnTime: 0.3
+  spawnTime: 0.1
   health: 20
   speed: 4

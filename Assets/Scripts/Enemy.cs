@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     SpriteRenderer sprite;
     Animator ani;
     Collider2D coll;
+    WaitForFixedUpdate wait;
 
     private void Awake()
     {
@@ -20,13 +21,14 @@ public class Enemy : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
+        wait = new WaitForFixedUpdate();
     }
 
     private void FixedUpdate()
     {
         if (!GameManager.instance.isLive)
             return;
-        if (!isLive)
+        if (!isLive||ani.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
         {
             return;
         }
@@ -64,10 +66,8 @@ public class Enemy : MonoBehaviour
     {
         if (!collision.CompareTag("Weapon")||!isLive)
             return;
-
         health -= collision.GetComponent<Weapon>().damage;
-
-        if(health>0)
+        if (health>0)
         {
             ani.SetTrigger("Hit");
             AudioManager.instance.PlaySFX(AudioManager.SFX.Hit);
@@ -77,10 +77,20 @@ public class Enemy : MonoBehaviour
             Dead();
             GameManager.instance.kill++;
             GameManager.instance.GetExp();
-            AudioManager.instance.PlaySFX(AudioManager.SFX.MonsterDie);
+            if(GameManager.instance.isLive)
+            {
+                AudioManager.instance.PlaySFX(AudioManager.SFX.MonsterDie);
+            }
+          
         }
     }
-
+    IEnumerator KnockBack()
+    {
+        yield return wait;
+        Vector3 playerPos = GameManager.instance.player.transform.position;
+        Vector3 dir = transform.position - playerPos;
+        rb.AddForce(dir.normalized * 3, ForceMode2D.Impulse);
+    }
     private void Dead()
     {
         StartCoroutine(Dying());

@@ -5,19 +5,23 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float damage;
+    public float weaponDamage;
     public float per;
     public bool isDied;
-
+    public int id;
     Rigidbody2D rb;
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
     public void Init(float damage, float per, Vector3 dir)
     {
-        this.damage = damage;
+        float playerDamage = GameManager.instance.player.playerDamage;
+        this.damage = damage+playerDamage;
+        weaponDamage = damage;
         this.per = per;
-        this.isDied = false;
+        isDied = false;
 
         if (per > -1)
         {
@@ -30,6 +34,11 @@ public class Weapon : MonoBehaviour
         Init(damage, per, Vector3.zero);
     }
 
+    public void DamageRelocation()
+    {
+        float playerDamage = GameManager.instance.player.playerDamage;
+        damage = playerDamage + weaponDamage;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy") || per == -1)

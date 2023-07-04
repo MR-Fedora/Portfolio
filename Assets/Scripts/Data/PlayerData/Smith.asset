@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3d8064cdfdc064497c343b9673c991, type: 3}
   m_Name: Smith
   m_EditorClassIdentifier: 
+  playerBaseDamage: 6
   maxHealth: 120
-  speed: 4
+  speed: 3.5
   playerID: 2
   weaponID: 2

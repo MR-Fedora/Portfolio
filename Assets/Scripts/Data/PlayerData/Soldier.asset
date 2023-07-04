@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3d8064cdfdc064497c343b9673c991, type: 3}
   m_Name: Soldier
   m_EditorClassIdentifier: 
+  playerBaseDamage: 50
   maxHealth: 100
-  speed: 5
+  speed: 4.3
   playerID: 0
   weaponID: 0

@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] public float moveSpeed;
-    [SerializeField] public Result overUI;
-    [SerializeField] public GameObject enemyClear;
+    public float moveSpeed;
+    public Result overUI;
+    public GameObject enemyClear;
     public PlayerData playerData;
 
     public int level;
@@ -19,14 +19,17 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     public Vector2 moveDir;
     public float health;
+    public float playerDamage;
 
     private void Awake()
     {
+        moveSpeed = playerData.speed;
         ani = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         scanner=GetComponent<Scanner>();
         health = playerData.maxHealth;
+        playerDamage = playerData.playerBaseDamage;
     }
     private void FixedUpdate()
     {

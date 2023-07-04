@@ -6,9 +6,9 @@ public class LevelUp : MonoBehaviour
 {
     RectTransform rect;
     Item[] items;
-
     private void Awake()
     {
+        
         items = GetComponentsInChildren<Item>(true);
         rect = GetComponent<RectTransform>();
     }
@@ -24,11 +24,6 @@ public class LevelUp : MonoBehaviour
     {
         rect.localScale = Vector3.zero; 
         GameManager.instance.Resume();
-    }
-
-    public void Select(int i)
-    {
-        items[i].OnClick();
     }
 
     void Next()
@@ -52,7 +47,14 @@ public class LevelUp : MonoBehaviour
             Item ranItem = items[ran[i]];
             if(ranItem.level == ranItem.data.damages.Length)
             {
-                items[4].gameObject.SetActive(true);
+                for(int j=0;j<ran.Length;i++)
+                {
+                    if (items[j].data.itemName== "Heal")
+                    {
+                        items[4].gameObject.SetActive(true);
+                        break;
+                    }
+                }
             }
             else
             {

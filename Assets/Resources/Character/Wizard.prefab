@@ -1,5 +1,82 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &636013946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 636013947}
+  - component: {fileID: 636013948}
+  m_Layer: 0
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &636013947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636013946}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6841421668555799972}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &636013948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636013946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d85423fa74d734d9bc17e24611ad5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  id: 0
+--- !u!1 &1921194681988445462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8029817305768569831}
+  m_Layer: 0
+  m_Name: Gear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8029817305768569831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921194681988445462}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6841421668555799972}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6841421668146498954
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6841421668555799972
 Transform:
   m_ObjectHideFlags: 0
@@ -99,6 +176,8 @@ Transform:
   m_Children:
   - {fileID: 6841421669976311772}
   - {fileID: 6841421669734807409}
+  - {fileID: 636013947}
+  - {fileID: 8029817305768569831}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -227,11 +306,12 @@ MonoBehaviour:
   moveSpeed: 5
   overUI: {fileID: 0}
   enemyClear: {fileID: 0}
-  playerData: {fileID: 0}
+  playerData: {fileID: 11400000, guid: ad2796c2944035f438536c6f77477978, type: 2}
   level: 0
   scanner: {fileID: 0}
   moveDir: {x: 0, y: 0}
-  controller: []
+  health: 0
+  playerDamage: 0
 --- !u!114 &6841421668555799978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,10 +355,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanRange: 10
+  meleeRange: 3
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  nearestTarget: {fileID: 0}
+  FireTarget: {fileID: 0}
+  swingTarget: {fileID: 0}
 --- !u!1 &6841421668574061482
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,21 +672,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: []
   spawnData:
-  - monster: {fileID: 8945958265921636003, guid: 69475ee3c11ac7242a02ceebba1b06e8, type: 3}
-    spawnType: 0
-    spawnTime: 0.7
-    health: 60
-    speed: 1.5
-  - monster: {fileID: 8706963575919594244, guid: 4e2cca0341ba9634c912170d990b6929, type: 3}
-    spawnType: 1
-    spawnTime: 0.5
-    health: 10
-    speed: 1.7
-  - monster: {fileID: 8027707488902570547, guid: 470d84ba7d27526488d6d30c5d0ffe17, type: 3}
-    spawnType: 2
-    spawnTime: 0.2
-    health: 10
-    speed: 2
+  - {fileID: 11400000, guid: e2791b62197b8cd4ba69352f9b6f450e, type: 2}
+  - {fileID: 11400000, guid: 44aa4ac28f9c59a4cb1d1e4b71a7e27d, type: 2}
+  - {fileID: 11400000, guid: df6f0cd9ee972c348b95a3fea0d3ab10, type: 2}
 --- !u!1 &6841421669825102682
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,82 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1725929966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1725929967}
+  - component: {fileID: 1725929968}
+  m_Layer: 0
+  m_Name: WeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1725929967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725929966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1159893572560997835}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1725929968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725929966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d85423fa74d734d9bc17e24611ad5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  id: 0
+--- !u!1 &319222634310135119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4277994348997728409}
+  m_Layer: 0
+  m_Name: Gear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4277994348997728409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319222634310135119}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1159893572560997835}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1159893572302402750
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1159893572560997835
 Transform:
   m_ObjectHideFlags: 0
@@ -123,13 +200,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159893572560997832}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1159893573662582106}
   - {fileID: 1159893573046720303}
+  - {fileID: 1725929967}
+  - {fileID: 4277994348997728409}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -258,9 +337,12 @@ MonoBehaviour:
   moveSpeed: 5
   overUI: {fileID: 0}
   enemyClear: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 0b822aa464ce90241ab2cd88d08fb169, type: 2}
   level: 0
   scanner: {fileID: 0}
   moveDir: {x: 0, y: 0}
+  health: 0
+  playerDamage: 0
 --- !u!114 &1159893572560997873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,10 +386,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanRange: 10
+  meleeRange: 3
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  nearestTarget: {fileID: 0}
+  FireTarget: {fileID: 0}
+  swingTarget: {fileID: 0}
 --- !u!1 &1159893572725262714
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,21 +548,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: []
   spawnData:
-  - monster: {fileID: 8945958265921636003, guid: 69475ee3c11ac7242a02ceebba1b06e8, type: 3}
-    spawnType: 0
-    spawnTime: 0.7
-    health: 60
-    speed: 1.5
-  - monster: {fileID: 8706963575919594244, guid: 4e2cca0341ba9634c912170d990b6929, type: 3}
-    spawnType: 1
-    spawnTime: 0.5
-    health: 10
-    speed: 1.7
-  - monster: {fileID: 8027707488902570547, guid: 470d84ba7d27526488d6d30c5d0ffe17, type: 3}
-    spawnType: 2
-    spawnTime: 0.2
-    health: 10
-    speed: 2
+  - {fileID: 11400000, guid: e2791b62197b8cd4ba69352f9b6f450e, type: 2}
+  - {fileID: 11400000, guid: 44aa4ac28f9c59a4cb1d1e4b71a7e27d, type: 2}
+  - {fileID: 11400000, guid: df6f0cd9ee972c348b95a3fea0d3ab10, type: 2}
 --- !u!1 &1159893573156827255
 GameObject:
   m_ObjectHideFlags: 0
