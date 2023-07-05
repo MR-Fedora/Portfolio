@@ -5,7 +5,8 @@ using UnityEngine;
 public class LevelUp : MonoBehaviour
 {
     RectTransform rect;
-    Item[] items;
+    public Item[] items;
+    public HealButton heal;
     private void Awake()
     {
         
@@ -42,19 +43,20 @@ public class LevelUp : MonoBehaviour
             if (ran[0] != ran[1] && ran[1] != ran[2] && ran[0] != ran[2])
                 break;
         }
-        for(int i=0;i<ran.Length;i++)
+        for (int i = 0; i < ran.Length; i++)
         {
             Item ranItem = items[ran[i]];
-            if(ranItem.level == ranItem.data.damages.Length)
+            if (ranItem.max)
             {
-                for(int j=0;j<ran.Length;i++)
-                {
-                    if (items[j].data.itemName== "Heal")
-                    {
-                        items[4].gameObject.SetActive(true);
-                        break;
-                    }
-                }
+                heal.gameObject.SetActive(true);
+                //for (int j = 0; j < ran.Length; i++)
+                //{
+                //    if (items[j].data.itemName == "Heal")
+                //    {
+                //        items[4].gameObject.SetActive(true);
+                //        break;
+                //    }
+                //}
             }
             else
             {

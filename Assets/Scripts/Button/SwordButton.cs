@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwordButton : Item
 {
@@ -17,6 +18,26 @@ public class SwordButton : Item
         {
             item.GetComponent<SwordPatton>().LevelUp(NextDamage(), NextCount());
             level++;
+            if(level >4)
+            {
+                level = 4;
+                max = true;
+                gameObject.GetComponent<Button>().interactable = false;
+            }
         }
+    }
+    private void OnEnable()
+    {
+        if(have == false)
+        {
+            textLevel.text = " ";
+            textDesc.text = "회전하는 검을 소환";
+        }
+        else
+        {
+            textLevel.text = "Lv." + (level + 1);
+            textDesc.text = string.Format(data.itemDes, data.damages[level] * 100, data.count[level]);
+        }
+        
     }
 }

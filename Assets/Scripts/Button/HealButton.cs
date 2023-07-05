@@ -8,5 +8,8 @@ public class HealButton : Item
     {
         GameManager.instance.player.health = GameManager.instance.player.playerData.maxHealth;
     }
-    
+    private void OnEnable()
+    {
+        textDesc.text = string.Format(data.itemDes);
+    }
 }

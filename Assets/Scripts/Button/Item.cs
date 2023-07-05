@@ -10,11 +10,12 @@ public class Item : MonoBehaviour
     public int level;
     public GameObject item;
 
+    public bool max;
 
     Image icon;
-    TMP_Text textLevel;
-    TMP_Text textName;
-    TMP_Text textDesc;
+    protected TMP_Text textLevel;
+    protected TMP_Text textName;
+    protected TMP_Text textDesc;
 
     private void Awake()
     {
@@ -31,10 +32,6 @@ public class Item : MonoBehaviour
     private void OnEnable()
     {
         textLevel.text = "Lv." + (level + 1);
-        if (level == data.damages.Length)
-        {
-            textLevel.text = "Lv. MAX";
-        }
         switch (data.itemType)
         {
             case ItemData.ItemType.Sword:
