@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AxeButton : Item
 {
-    bool have = false;
+    
     public override void OnClick()
     {
         if(have == false)
@@ -25,6 +25,7 @@ public class AxeButton : Item
                 gameObject.GetComponent<Button>().interactable = false;
             }
         }
+        newEvent.Invoke();
     }
     private void OnEnable()
     {

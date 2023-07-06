@@ -30,6 +30,7 @@ public class PlayerMove : MonoBehaviour
         scanner=GetComponent<Scanner>();
         health = playerData.maxHealth;
         playerDamage = playerData.playerBaseDamage;
+
     }
     private void FixedUpdate()
     {
@@ -38,7 +39,6 @@ public class PlayerMove : MonoBehaviour
         level =GameManager.instance.level;
         Move();
     }
-
     private void Move()
     {
         if(moveDir.x<0)
@@ -56,6 +56,18 @@ public class PlayerMove : MonoBehaviour
     private void OnMove(InputValue value)
     {
         moveDir = value.Get<Vector2>();
+    }
+
+    private void OnMenu(InputValue value)
+    {
+        if(!GameManager.instance.escMenu.active)
+        {
+            GameManager.instance.escMenu.Show();
+        }
+        else
+        {
+            GameManager.instance.escMenu.Hide();
+        }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {

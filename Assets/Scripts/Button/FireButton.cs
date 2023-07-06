@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class FireButton : Item
 {
-    bool have = false;
     public override void OnClick()
     {
         if(have == false)
@@ -25,6 +24,7 @@ public class FireButton : Item
                 gameObject.GetComponent<Button>().interactable = false;
             }
         }
+        newEvent.Invoke();
     }
     private void OnEnable()
     {

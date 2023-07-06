@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Item : MonoBehaviour
@@ -9,13 +10,15 @@ public class Item : MonoBehaviour
     public ItemData data;
     public int level;
     public GameObject item;
-
+    public UnityEvent newEvent;
     public bool max;
 
-    Image icon;
-    protected TMP_Text textLevel;
-    protected TMP_Text textName;
-    protected TMP_Text textDesc;
+    public bool inventory=false;
+    public bool have;
+    public Image icon;
+    public TMP_Text textLevel;
+    public TMP_Text textName;
+    public TMP_Text textDesc;
 
     private void Awake()
     {
@@ -27,26 +30,6 @@ public class Item : MonoBehaviour
         textName = texts[1];
         textDesc = texts[2];
         textName.text = data.itemName;
-    }
-
-    private void OnEnable()
-    {
-        textLevel.text = "Lv." + (level + 1);
-        switch (data.itemType)
-        {
-            case ItemData.ItemType.Sword:
-            case ItemData.ItemType.Fire:
-            case ItemData.ItemType.Axe:
-                textDesc.text = string.Format(data.itemDes, data.damages[level]*100, data.count[level]);
-                break;
-            case ItemData.ItemType.Speed:
-            case ItemData.ItemType.UPGrade:
-                textDesc.text = string.Format(data.itemDes, data.damages[level]*100);
-                break;
-            default:
-                textDesc.text = string.Format(data.itemDes);
-                break;
-        }
     }
     protected float  NextDamage()
     {

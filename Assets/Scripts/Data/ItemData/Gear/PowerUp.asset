@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8487d020448cde443a45df93fe59172c, type: 3}
   m_Name: PowerUp
   m_EditorClassIdentifier: 
-  itemType: 3
+  itemType: 1
   itemId: 0
   itemName: PowerUp
   itemDes: "\uCE90\uB9AD\uD130 \uACF5\uACA9\uB825 {0}%\uC99D\uAC00"

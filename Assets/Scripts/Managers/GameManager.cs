@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public PlayerBox box;
     public PlayerMove player;
     public LevelUp uiLevelUp;
+    public ESC escMenu;
     private void Awake()
     {
         if (instance != null)
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         player = box.playerBox[id];
         player.gameObject.SetActive(true);
         uiLevelUp = FindObjectOfType<LevelUp>();
+        escMenu = FindObjectOfType<ESC>();
         poolManager.poolRoot = new GameObject("PoolRoot").transform;
 
         

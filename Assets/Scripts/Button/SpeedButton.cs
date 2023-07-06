@@ -11,6 +11,7 @@ public class SpeedButton : Item
         {
             item = new GameObject();
             item.AddComponent<SpeedGear>().Init(data);
+            have = true;
         }
        else
         {
@@ -24,6 +25,7 @@ public class SpeedButton : Item
             max = true;
             gameObject.GetComponent<Button>().interactable = false;
         }
+        newEvent.Invoke();
     }
     private void OnEnable()
     {
