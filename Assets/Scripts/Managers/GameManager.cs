@@ -15,18 +15,14 @@ public class GameManager : MonoBehaviour
     public int[] nextExp = { 3, 5, 10, 10, 10, 10, 10, 10, 10, 10 };
 
     public static PoolManager poolManager;
-    public static ResourceManager resourceManager;
    
     public static GameManager Instance { get { return instance; } }
     public static PoolManager Pool { get { return poolManager; } }
-    public static ResourceManager Resource { get { return resourceManager; } }
-
 
     public CMtarget cm;
     public PlayerBox box;
     public PlayerMove player;
     public LevelUp uiLevelUp;
-   // public ESC escMenu;
     private void Awake()
     {
         if (instance != null)
@@ -46,7 +42,6 @@ public class GameManager : MonoBehaviour
         player = box.playerBox[id];
         player.gameObject.SetActive(true);
         uiLevelUp = FindObjectOfType<LevelUp>();
-        //escMenu = FindObjectOfType<ESC>();
         poolManager.poolRoot = new GameObject("PoolRoot").transform;
 
         
@@ -130,11 +125,6 @@ public class GameManager : MonoBehaviour
         poolObj.name = "PoolManager";
         poolObj.transform.parent = transform;
         poolManager = poolObj.AddComponent<PoolManager>();
-
-        GameObject resourceObj = new GameObject();
-        resourceObj.name = "ResourceManager";
-        resourceObj.transform.parent = transform;
-        resourceManager = resourceObj.AddComponent<ResourceManager>();
     }
     public void GetExp()
     {
