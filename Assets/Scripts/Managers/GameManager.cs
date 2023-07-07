@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int level;
     public int exp;
     public int kill;
+    public bool gameENd=true;
     public int[] nextExp = { 3, 5, 10, 10, 10, 10, 10, 10, 10, 10 };
 
     public static PoolManager poolManager;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
     public void GameStart(int id)
     {
         gameTime = 0;
-        
+        gameENd = false;
         box = FindObjectOfType<PlayerBox>();
         player = box.playerBox[id];
         player.gameObject.SetActive(true);
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        gameENd=true;
         StartCoroutine(GameOverRoutine());
     }
 
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameVictory()
     {
+        gameENd = true;
         StartCoroutine(GameVictoryRoutine());
     }
 

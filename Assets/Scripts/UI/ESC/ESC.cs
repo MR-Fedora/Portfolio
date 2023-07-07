@@ -32,7 +32,7 @@ public class ESC : MonoBehaviour
 
     private void OnBack(InputValue value)
     {
-        if(!on)
+        if(!on&& !GameManager.instance.gameENd)
         {
             Show();
         }
