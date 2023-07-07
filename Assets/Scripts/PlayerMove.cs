@@ -58,17 +58,10 @@ public class PlayerMove : MonoBehaviour
         moveDir = value.Get<Vector2>();
     }
 
-    private void OnMenu(InputValue value)
-    {
-        if(!GameManager.instance.escMenu.active)
-        {
-            GameManager.instance.escMenu.Show();
-        }
-        else
-        {
-            GameManager.instance.escMenu.Hide();
-        }
-    }
+    //private void OnMenu(InputValue value)
+    //{
+    //        GameManager.instance.escMenu.Show();
+    //}
     private void OnCollisionStay2D(Collision2D collision)
     {
         if(!GameManager.instance.isLive)

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ESC : MonoBehaviour
 {
     RectTransform rect;
-    public bool active=false;
-
+    public GameObject soundSetting;
+    bool on=false;
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -14,15 +15,27 @@ public class ESC : MonoBehaviour
 
     public void Show()
     {
-        active = true;
+        on=true;
         rect.localScale = Vector3.one;
         GameManager.instance.Stop();
     }
 
     public void Hide()
     {
-        active = false;
+        on=false;
         rect.localScale = Vector3.zero;
         GameManager.instance.Resume();
+    }
+
+    private void OnBack(InputValue value)
+    {
+        if(!on)
+        {
+            Show();
+        }
+        else if(on && !soundSetting.activeSelf)
+        {
+            Hide();
+        }
     }
 }

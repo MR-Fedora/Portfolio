@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public PlayerBox box;
     public PlayerMove player;
     public LevelUp uiLevelUp;
-    public ESC escMenu;
+   // public ESC escMenu;
     private void Awake()
     {
         if (instance != null)
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         player = box.playerBox[id];
         player.gameObject.SetActive(true);
         uiLevelUp = FindObjectOfType<LevelUp>();
-        escMenu = FindObjectOfType<ESC>();
+        //escMenu = FindObjectOfType<ESC>();
         poolManager.poolRoot = new GameObject("PoolRoot").transform;
 
         
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         isLive = true;
         Resume();
 
-        AudioManager.instance.PlayrBGM(true);
+        AudioManager.instance.PlayerBGM(true);
     }
     public void GameReTry()
     {
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         player.overUI.Lose();
         Stop();
         AudioManager.instance.PlaySFX(AudioManager.SFX.Die);
-        AudioManager.instance.PlayrBGM(false);
+        AudioManager.instance.PlayerBGM(false);
 
     }
     public void GameVictory()
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         player.overUI.gameObject.SetActive(true);
         player.overUI.Win();
         Stop();
-        AudioManager.instance.PlayrBGM(false);
+        AudioManager.instance.PlayerBGM(false);
         AudioManager.instance.PlaySFX(AudioManager.SFX.Victory);
     }
    

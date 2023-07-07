@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+
+    public Scrollbar bgmScrollbar;
+    public Scrollbar sfxScrollbar;
 
     public AudioClip bgmClip;
     public float bgmVolume;
@@ -45,7 +49,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayrBGM(bool isPlay)
+    public void PlayerBGM(bool isPlay)
     {
         if(isPlay)
         {
@@ -72,5 +76,16 @@ public class AudioManager : MonoBehaviour
             break;
         }
         
+    }
+    public void BGMSoundValue()
+    {
+        bgmSource.volume = bgmScrollbar.value;
+    }
+    public void SFMSoundValue()
+    {
+        for (int i = 0; i < sfxSource.Length; i++)
+        {
+            sfxSource[i].volume = sfxScrollbar.value;
+        }
     }
 }
