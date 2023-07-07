@@ -6,10 +6,12 @@ public class GameStart : MonoBehaviour
 {
     public void GameMainStart(int id)
     {
+        
         GameManager.instance.GameStart(id);
     }
     public void GameReTry()
     {
+        GameManager.instance.gameENd = true;
         GameManager.instance.GameReTry();
     }
 }
