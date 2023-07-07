@@ -40,8 +40,6 @@ public class EscItem : MonoBehaviour
                     case ItemData.ItemType.Weapon:
                         if (itemHave[i].level == 0)
                             slots[i].text.text = "";
-                        else
-                            slots[i].text.text = "LV." + (itemHave[i].level + 1);
                         break;
                     case ItemData.ItemType.Gear:
                         slots[i].text.text = "LV." + itemHave[i].level;
@@ -56,13 +54,16 @@ public class EscItem : MonoBehaviour
                 switch (itemHave[i].data.itemType)
                 {
                     case ItemData.ItemType.Weapon:
-                        if (itemHave[i].level == 0)
-                            slots[i].text.text = "";
+                        if (itemHave[i].level==4)
+                            slots[i].text.text = "LV. MAX";
                         else
                             slots[i].text.text = "LV." + itemHave[i].level;
                         break;
                     case ItemData.ItemType.Gear:
-                        slots[i].text.text = "LV." + itemHave[i].level;
+                        if (itemHave[i].level == 4)
+                            slots[i].text.text = "LV. MAX";
+                        else
+                            slots[i].text.text = "LV." + itemHave[i].level;
                         break;
                 }
             }

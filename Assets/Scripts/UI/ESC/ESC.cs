@@ -24,7 +24,10 @@ public class ESC : MonoBehaviour
     {
         on=false;
         rect.localScale = Vector3.zero;
-        GameManager.instance.Resume();
+        if (!GameManager.instance.uiLevelUp.on)
+        {
+            GameManager.instance.Resume();
+        }
     }
 
     private void OnBack(InputValue value)

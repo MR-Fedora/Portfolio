@@ -7,6 +7,7 @@ public class LevelUp : MonoBehaviour
     RectTransform rect;
     public Item[] items;
     public HealButton heal;
+    public bool on=false;
     private void Awake()
     {
         
@@ -17,12 +18,15 @@ public class LevelUp : MonoBehaviour
     public void Show()
     {
         Next();
+        on = true;
         rect.localScale = Vector3.one;
         GameManager.instance.Stop();
+        
     }
 
     public void Hide()
     {
+        on = false;
         rect.localScale = Vector3.zero; 
         GameManager.instance.Resume();
     }
@@ -49,14 +53,6 @@ public class LevelUp : MonoBehaviour
             if (ranItem.max)
             {
                 heal.gameObject.SetActive(true);
-                //for (int j = 0; j < ran.Length; i++)
-                //{
-                //    if (items[j].data.itemName == "Heal")
-                //    {
-                //        items[4].gameObject.SetActive(true);
-                //        break;
-                //    }
-                //}
             }
             else
             {
