@@ -20,7 +20,7 @@ public class SwordButton : Item
             level++;
             if(level >4)
             {
-                level = 4;
+
                 max = true;
                 gameObject.GetComponent<Button>().interactable = false;
             }
@@ -36,7 +36,10 @@ public class SwordButton : Item
         }
         else
         {
-            textLevel.text = "Lv." + (level + 1);
+            if (level == 4)
+                textLevel.text = "LV. MAX";
+            else
+                textLevel.text = "Lv." + (level + 1);
             textDesc.text = string.Format(data.itemDes, data.damages[level] * 100, data.count[level]);
         }
         

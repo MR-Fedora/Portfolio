@@ -21,7 +21,7 @@ public class SpeedButton : Item
         level++;
         if (level > 4)
         {
-            level = 4;
+
             max = true;
             gameObject.GetComponent<Button>().interactable = false;
         }
@@ -29,7 +29,10 @@ public class SpeedButton : Item
     }
     private void OnEnable()
     {
-        textLevel.text = "Lv." + (level + 1);
+        if (level == 4)
+            textLevel.text = "LV. MAX";
+        else
+            textLevel.text = "Lv." + (level + 1);
         textDesc.text = string.Format(data.itemDes, data.damages[level] * 100);
     }
 }
