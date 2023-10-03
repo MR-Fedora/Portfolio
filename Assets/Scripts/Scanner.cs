@@ -14,23 +14,26 @@ public class Scanner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero,0,targetLayer);
+        targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
         FireTarget = GetNearest();
         meleeTargets = Physics2D.CircleCastAll(transform.position, meleeRange, Vector2.zero, 0, targetLayer);
         swingTarget = MeleeNear();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, scanRange);
+    }
     private Transform GetNearest()
     {
         Transform result = null;
         float diff = 100;
         foreach (RaycastHit2D target in targets)
         {
-            Vector3 myPos= transform.position;
-            Vector3 targetPos = target.transform.position;
-            float curDiff = Vector3.Distance(myPos, targetPos);
+            float curDiff = (transform.position - target.transform.position).sqrMagnitude;
 
-            if(curDiff < diff)
+            if (curDiff < diff)
             {
                 diff = curDiff;
                 result = target.transform;
